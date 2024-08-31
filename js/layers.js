@@ -25,7 +25,6 @@ addLayer("e", {
         {key: "e", description: "E: Reset for energy", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true},
-    buyables: {
     upgrades: {
         11: {
 <<<<<<< HEAD
@@ -59,6 +58,5 @@ addLayer("e", {
 >>>>>>> parent of 2e9ee4c (uh i messed up)
             },
         },
-    }
     },
 })
