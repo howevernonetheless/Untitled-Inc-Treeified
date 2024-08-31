@@ -44,12 +44,8 @@ function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 	let gain = new Decimal(1)
-<<<<<<< HEAD
-	gain = gain.add(getBuyableAmount('e', 11))
-=======
 	if (hasUpgrade('e', 11)) gain = gain.times(2)
 	if (hasUpgrade('e', 12)) gain = gain.times(upgradeEffect('e', 12))
->>>>>>> parent of 2e9ee4c (uh i messed up)
 	return gain
 }
 
