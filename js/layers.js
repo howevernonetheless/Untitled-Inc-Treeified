@@ -26,28 +26,15 @@ addLayer("e", {
         {key: "e", description: "E: Reset for energy", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true},
-    upgrades: {
+    buyables: {
         11: {
-            title: "Accelerator",
-            description: "Doubles your Velocity gain by 1.",
-            cost: new Decimal(1),
-        },
-        12: {
-            title: "Energized Accelerator",
-            description: "Energy boosts Velocity at a lowered rate.",
-            cost: new Decimal(3),
-            effect() {
-                return player[this.layer].points.add(1).pow(0.5)
-            },
-            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
-        },
-        13: {
-            title: "Kinetic Charge",
-            description: "Velocity boosts Energy gain at a lowered rate.",
-            cost: new Decimal(10),
-            effect() {
-                return player.points.add(1).pow(0.15)
+            cost(x) { return new Decimal(1).mul(x) },
+            display() { return "Blah" },
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
         },
-    },
+    }
 })
