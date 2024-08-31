@@ -15,7 +15,6 @@ addLayer("e", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
-        if (hasUpgrade('e', 13)) mult = mult.times(upgradeEffect('e', 13))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -28,11 +27,12 @@ addLayer("e", {
     layerShown(){return true},
     buyables: {
         11: {
-            cost(x) { return new Decimal(1).mul(x) },
-            display() { return "Blah" },
+            title() { return "Accelerator" },
+            cost(x) { return new Decimal(1).mul(x.pow(1.2)) },
+            display() { return "Increases your base Velocity gain by 1. Cost:" },
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             buy() {
-                player[this.layer].points = player[this.layer].points.sub(this.cost())
+                this.layer.resource = this.layer.resource.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
         },
