@@ -26,7 +26,9 @@ addLayer("e", {
     ],
     layerShown(){return true},
     buyables: {
+    upgrades: {
         11: {
+<<<<<<< HEAD
             title() { return "Accelerator" },
             cost(x) { return new Decimal(1).mul(x.pow(1.2)) },
             display() { return "Increases your base Velocity gain by 1. Cost:" },
@@ -34,7 +36,29 @@ addLayer("e", {
             buy() {
                 this.layer.resource = this.layer.resource.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+=======
+            title: "Accelerator",
+            description: "Doubles your Velocity gain by 1.",
+            cost: new Decimal(1),
+        },
+        12: {
+            title: "Energized Accelerator",
+            description: "Energy boosts Velocity at a lowered rate.",
+            cost: new Decimal(3),
+            effect() {
+                return player[this.layer].points.add(1).pow(0.5)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        13: {
+            title: "Kinetic Charge",
+            description: "Velocity boosts Energy gain at a lowered rate.",
+            cost: new Decimal(10),
+            effect() {
+                return player.points.add(1).pow(0.15)
+>>>>>>> parent of 2e9ee4c (uh i messed up)
             },
         },
     }
+    },
 })
