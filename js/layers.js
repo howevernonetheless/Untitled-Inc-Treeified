@@ -48,5 +48,10 @@ addLayer("e", {
                 return player.points.add(1).pow(0.15)
             },
         },
+        14: {
+            title: "Accelerator+",
+            description: "Accelerator now quadruples your Velocity gain.",
+            cost: new Decimal(25)
+        },
     },
 })
